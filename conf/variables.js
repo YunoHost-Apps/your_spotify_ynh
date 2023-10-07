@@ -1,0 +1,1 @@
+window.API_ENDPOINT = '__DOMAIN__:__PORT_API__';
