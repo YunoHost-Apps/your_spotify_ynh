@@ -51,6 +51,9 @@ pushd $install_dir/server
 
 popd
 
+ynh_add_config --template="../conf/.env" --destination="$install_dir/server/.env"
+chmod 600 $install_dir/.env
+
 pushd $install_dir/client
     ynh_use_nodejs
 
