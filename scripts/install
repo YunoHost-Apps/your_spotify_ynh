@@ -24,6 +24,9 @@ ynh_npm install --global npm@latest
 # Install Yarn
 ynh_npm install --global yarn
 
+# Install Typescript
+ynh_npm install --global typescript
+
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
