@@ -40,8 +40,14 @@ chown -R $app:www-data "$install_dir"
 # BUILD APP
 #=================================================
 
+ynh_add_config --template="../conf/.env" --destination="$install_dir/server/.env"
+chmod 600 $install_dir/.env
+
 pushd $install_dir/server
     ynh_use_nodejs
+
+        set -a
+        source $install_dir/server/.env
 
 	ynh_script_progression --message="Fetching Yarn dev dependencies... This can be very long, be patient !" --weight=18
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn install --network-timeout=100000
@@ -55,10 +61,9 @@ pushd $install_dir/server
 	ynh_script_progression --message="Cleaning cache... " --weight=3
 	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH yarn cache clean 2>&1
 
+        set +a
 popd
 
-ynh_add_config --template="../conf/.env" --destination="$install_dir/server/.env"
-chmod 600 $install_dir/.env
 
 pushd $install_dir/client
     ynh_use_nodejs
