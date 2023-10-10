@@ -60,9 +60,6 @@ chmod 600 $install_dir/server/.env
 pushd $install_dir/server
     ynh_use_nodejs
 
-        set -a
-        source $install_dir/server/.env
-
 	ynh_script_progression --message="Fetching Yarn dev dependencies... This can be very long, be patient !" --weight=18
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn install --network-timeout=100000
 
@@ -70,12 +67,11 @@ pushd $install_dir/server
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn build
 
 	ynh_script_progression --message="Building Yarn dev dependencies... This can be very long, be patient !" --weight=25
-	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH CLIENT_ENDPOINT=__DOMAIN__:__PORT_FRONT__ API_ENDPOINT=__DOMAIN__:__PORT_API__ SPOTIFY_PUBLIC=__PUBLIC_KEY__ SPOTIFY_SECRET=__SECRET_KEY__ yarn migrate
+	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH CLIENT_ENDPOINT=__DOMAIN__:__PORT_FRONT__ API_ENDPOINT=__DOMAIN__:__PORT_API__ SPOTIFY_PUBLIC=__PUBLIC_KEY__ SPOTIFY_SECRET=__SECRET_KEY__ MONGO_ENDPOINT=mongodb://localhost:27017/__DB_NAME__ yarn migrate
 	
 	ynh_script_progression --message="Cleaning cache... " --weight=3
 	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH yarn cache clean 2>&1
 
-        set +a
 popd
 
 
