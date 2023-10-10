@@ -55,7 +55,7 @@ chown -R $app:www-data "$install_dir"
 #=================================================
 
 ynh_add_config --template="../conf/.env" --destination="$install_dir/server/.env"
-chmod 600 $install_dir/.env
+chmod 600 $install_dir/server/.env
 
 pushd $install_dir/server
     ynh_use_nodejs
