@@ -18,7 +18,7 @@ code = "https://github.com/Yooooomi/your_spotify"
 fund = "https://github.com/sponsors/Yooooomi"
 
 [integration]
-yunohost = ">= 11.2.4"
+yunohost = ">= 11.2.5"
 architectures = "all"
 multi_instance = true
 ldap = true
