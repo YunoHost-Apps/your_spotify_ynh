@@ -4,6 +4,9 @@ Wants=network-online.target __MONGODB_SERVICENAME__.service
 After=syslog.target network.target nss-lookup.target network-online.target __MONGODB_SERVICENAME__.service
 
 [Service]
+Type=simple
+User=__APP__
+Group=__APP__
 EnvironmentFile=__INSTALL_DIR__/server/.env
 ExecStart=__YNH_NODE__ lib/bin/www
 StandardOutput=journal
