@@ -70,7 +70,7 @@ pushd $install_dir/server
 	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn build
 
 	ynh_script_progression --message="Building Yarn dev dependencies... This can be very long, be patient !" --weight=25
-	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH yarn migrate
+	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH CLIENT_ENDPOINT=__DOMAIN__:__PORT_FRONT__ API_ENDPOINT=__DOMAIN__:__PORT_API__ SPOTIFY_PUBLIC=__PUBLIC_KEY__ SPOTIFY_SECRET=__SECRET_KEY__ yarn migrate
 	
 	ynh_script_progression --message="Cleaning cache... " --weight=3
 	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH yarn cache clean 2>&1
