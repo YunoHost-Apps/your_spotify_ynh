@@ -29,6 +29,7 @@ This is a dummy description of this app features
 
 * Official admin documentation: <https://github.com/Yooooomi/your_spotify/blob/master/LOCAL_INSTALL.md>
 * Upstream app code repository: <https://github.com/Yooooomi/your_spotify>
+* YunoHost Store: <https://apps.yunohost.org/app/your_spotify>
 * Report a bug: <https://github.com/YunoHost-Apps/your_spotify_ynh/issues>
 
 ## Developer info
