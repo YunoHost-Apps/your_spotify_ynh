@@ -69,8 +69,8 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.main]
-        url = "https://github.com/Yooooomi/your_spotify/archive/refs/tags/1.7.0.tar.gz"
-        sha256 = "4b84fbfe83a8aaa4649c4d34f59f0a641a746cb30921edb564ff8a6dd6a18ee8"
+        url = "https://github.com/Yooooomi/your_spotify/archive/refs/tags/1.7.1.tar.gz"
+        sha256 = "c5985c208ba1ffd2b41b96d1f544539b1a8e7eaa12d87de806ee99701e5db59d"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
