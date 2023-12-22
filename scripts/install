@@ -126,10 +126,10 @@ ynh_add_nginx_config
 
 # Create a dedicated systemd config
 ynh_add_systemd_config --service="${app}_api" --template="your_spotify_api.service"
-ynh_add_systemd_config --service="${app}_front" --template="your_spotify_front.service"
+#ynh_add_systemd_config --service="${app}_front" --template="your_spotify_front.service"
 
 yunohost service add "${app}_api" --description="${app} Backend" --log="/var/log/$app/${app}_api.log"
-yunohost service add "${app}_front" --description="${app} Frontend" --log="/var/log/$app/${app}_front.log"
+#yunohost service add "${app}_front" --description="${app} Frontend" --log="/var/log/$app/${app}_front.log"
 
 # Use logrotate to manage application logfile(s)
 ynh_use_logrotate
@@ -154,7 +154,7 @@ ynh_script_progression --message="Starting a systemd service..." --weight=1
 
 # Start a systemd service
 ynh_systemd_action --service_name=${app}_api --action="start" --log_path="/var/log/$app/${app}_api.log"
-ynh_systemd_action --service_name=${app}_front --action="start" --log_path="/var/log/$app/${app}_front.log"
+#ynh_systemd_action --service_name=${app}_front --action="start" --log_path="/var/log/$app/${app}_front.log"
 
 #=================================================
 # END OF SCRIPT
