@@ -96,8 +96,6 @@ pushd $install_dir/client
 	ynh_script_progression --message="Cleaning cache... " --weight=3
 	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH yarn cache clean 2>&1
 
-	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH serve -s -l __PORT_FRONT__
-
 popd
 
 chmod 750 "$install_dir"
@@ -127,9 +125,11 @@ ynh_script_progression --message="Adding system configurations related to $app..
 ynh_add_nginx_config
 
 # Create a dedicated systemd config
-ynh_add_systemd_config
+ynh_add_systemd_config --service="${app}_api" --template="your_spotify_api.service"
+ynh_add_systemd_config --service="${app}_front" --template="your_spotify_front.service"
 
-yunohost service add $app --description=" Self hosted Spotify tracking dashboard " --log="/var/log/$app/$app.log"
+yunohost service add "${app}_api" --description="${app} Backend" --log="/var/log/$app/${app}_api.log"
+yunohost service add "${app}_front" --description="${app} Frontend" --log="/var/log/$app/${app}_front.log"
 
 # Use logrotate to manage application logfile(s)
 ynh_use_logrotate
@@ -153,7 +153,8 @@ ynh_script_progression --message="Starting a systemd service..." --weight=1
 ###		- And the section "STOP SYSTEMD SERVICE" and "START SYSTEMD SERVICE" in the change_url script
 
 # Start a systemd service
-ynh_systemd_action --service_name=$app --action="start" --log_path="/var/log/$app/$app.log"
+ynh_systemd_action --service_name=${app}_api --action="start" --log_path="/var/log/$app/${app}_api.log"
+ynh_systemd_action --service_name=${app}_front --action="start" --log_path="/var/log/$app/${app}_front.log"
 
 #=================================================
 # END OF SCRIPT
