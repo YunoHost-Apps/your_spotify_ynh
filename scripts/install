@@ -108,6 +108,10 @@ ynh_add_config --template="../conf/variables.js" --destination="$install_dir/cli
 chmod 400 "$install_dir/client/variables.js"
 chown $app:$app "$install_dir/client/variables.js"
 
+#for testing, to see which conf is at right place
+ynh_add_config --template="../conf/variables.js" --destination="$install_dir/client/public/variables.js"
+chmod 400 "$install_dir/client/public/variables.js"
+chown $app:$app "$install_dir/client/public/variables.js"
 
 #=================================================
 # SYSTEM CONFIGURATION
