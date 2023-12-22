@@ -100,7 +100,7 @@ popd
 
 chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
-chown -R $app:$app "$install_dir"
+chown -R $app:www-data "$install_dir"
 
 #=================================================
 # ADD A CONFIGURATION
@@ -114,7 +114,7 @@ chown $app:$app "$install_dir/client/variables.js"
 #for testing, to see which conf is at right place
 ynh_add_config --template="../conf/variables.js" --destination="$install_dir/client/build/variables.js"
 chmod 400 "$install_dir/client/build/variables.js"
-chown $app:$app "$install_dir/client/build/variables.js"
+chown $app:www-data "$install_dir/client/build/variables.js"
 
 #=================================================
 # SYSTEM CONFIGURATION
