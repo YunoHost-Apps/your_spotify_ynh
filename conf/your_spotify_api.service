@@ -6,7 +6,7 @@ After=syslog.target network.target nss-lookup.target network-online.target __MON
 [Service]
 Type=simple
 User=__APP__
-Group=__APP__
+Group=www-data
 EnvironmentFile=__INSTALL_DIR__/server/.env
 ExecStart=__YNH_NODE__ lib/bin/www
 StandardOutput=journal
