@@ -78,8 +78,6 @@ pushd $install_dir/server
 	ynh_script_progression --message="Cleaning cache... " --weight=3
 	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH yarn cache clean 2>&1
 
-        serve -s -l $port_front
-
 popd
 
 
@@ -97,6 +95,9 @@ pushd $install_dir/client
 	
 	ynh_script_progression --message="Cleaning cache... " --weight=3
 	ynh_exec_warn_less sudo -u $app env $ynh_node_load_PATH yarn cache clean 2>&1
+
+        ynh_script_progression --message="Serve index.html file... " --weight=3
+        serve -s -l $port_front
 
 popd
 
