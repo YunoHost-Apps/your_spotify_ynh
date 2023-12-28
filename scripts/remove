@@ -17,13 +17,20 @@ source /usr/share/yunohost/helpers
 ynh_script_progression --message="Removing system configurations related to $app..." --weight=1
 
 # Remove the service from the list of services known by YunoHost (added from `yunohost service add`)
-if ynh_exec_warn_less yunohost service status $app >/dev/null
+if ynh_exec_warn_less yunohost service status "${app}_api" >/dev/null
 then
-	ynh_script_progression --message="Removing $app service integration..." --weight=1
-	yunohost service remove $app
+	ynh_script_progression --message="Removing ${app}_api service integration..."
+	yunohost service remove "${app}_api"
 fi
 
-ynh_remove_systemd_config
+if ynh_exec_warn_less yunohost service status "${app}_front" >/dev/null
+then
+	ynh_script_progression --message="Removing ${app}_front service integration..."
+	yunohost service remove "${app}_front"
+fi
+
+ynh_remove_systemd_config --service="${app}_api"
+ynh_remove_systemd_config --service="${app}_front"
 
 # Remove a database if it exists, along with the associated user
 ynh_mongo_remove_db --db_user=$db_user --db_name=$db_name
