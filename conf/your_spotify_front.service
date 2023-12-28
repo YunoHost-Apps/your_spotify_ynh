@@ -9,7 +9,7 @@ User=__APP__
 Group=__APP__
 WorkingDirectory=__INSTALL_DIR__/client/build
 EnvironmentFile=__INSTALL_DIR__/server/.env
-ExecStart=__YNH_NODE__ __YNH_NPM__ run serve -s -l __PORT_FRONT__
+ExecStart=__YNH_NPM__ run serve -s -l __PORT_FRONT__ build
 StandardOutput=journal
 Restart=on-failure
 
